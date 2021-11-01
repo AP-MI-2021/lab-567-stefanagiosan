@@ -15,7 +15,7 @@ def uiAdaugaCheltuiala(lista):
     suma = int(input("dati suma: "))
     data = input("dati data: ")
     tip = input("dati data: ")
-    return adaugaCheltuiala(nr, suma, data, tip)
+    return adaugaCheltuiala(nr, suma, data, tip, lista)
 
 def uiStergeCheltuiala(lista):
     nr = input("dati nr-ul cheltuielii de sters: ")
@@ -26,7 +26,7 @@ def uiModificaCheltuiala(lista):
     suma = int(input("dati suma noua: "))
     data = input("dati noua data: ")
     tip = input("dati noul tip: ")
-    return modificaCheltuiala(nr, suma, data, tip)
+    return modificaCheltuiala(nr, suma, data, tip, lista)
 
 def showAll(lista):
     for cheltuiala in lista:
@@ -34,7 +34,7 @@ def showAll(lista):
 
 
 def uiAdunareCheltuiala(lista):
-    data= input("dati data pt care cheltuieli li se va adauga o valoarea: ")
+    data = input("dati data pt care cheltuieli li se va adauga o valoarea: ")
     valoarea  = int(input("dati valoarea pe care vreti sa o adaugati: "))
     return adunareCheltuieli(data, valoarea, lista )
 

@@ -4,7 +4,7 @@ def adaugaCheltuiala(nr, suma, data, tip, lista ):
     '''
     adauga o cheltuiala intr-o lista
     :param nr: int
-    :param suma: float
+    :param suma: int
     :param data:  string
     :param tip: string
     :param lista: lista de cheltuieli
