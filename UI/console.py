@@ -42,21 +42,22 @@ def uiAdunareCheltuiala(lista):
 
 
 def runMenu(lista):
+    lista = []
     while True:
         printMenu()
         optiune = input("dati optiunea: ")
 
-        if optiune == "1.":
+        if optiune == "1":
             lista = uiAdaugaCheltuiala(lista)
-        elif optiune == "2.":
+        elif optiune == "2":
             lista = uiStergeCheltuiala(lista)
-        elif optiune == "3.":
+        elif optiune == "3":
             lista = uiModificaCheltuiala(lista)
-        elif optiune == "4.":
+        elif optiune == "4":
             lista = uiAdaugaCheltuiala(lista)
-        elif optiune == "a.":
+        elif optiune == "a":
             showAll(lista)
-        elif optiune == "x.":
+        elif optiune == "x":
             break
         else:
             print("optiune gresita!reincarcati")

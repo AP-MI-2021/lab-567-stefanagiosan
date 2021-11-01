@@ -7,9 +7,9 @@ def testAdaugaCheltuiala():
 
     assert len(lista) == 1
     assert getNr(getByNr(1, lista)) == 1
-    assert getSuma(getByNr(100, lista)) == 100
-    assert getData(getByNr("12.3.2000", lista)) == "12.3.2000"
-    assert getTip(getByNr("canal", lista)) == "canal"
+    assert getSuma(getByNr(1, lista)) == 100
+    assert getData(getByNr(1, lista)) == "12.3.2000"
+    assert getTip(getByNr(1, lista)) == "canal"
 
 
 def testStergeCheltuiala():
