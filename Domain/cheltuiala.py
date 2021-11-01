@@ -1,22 +1,33 @@
 
 
-def creeazaCheltuiala(nr, suma, data, tip):
+def creeazaCheltuiala(id ,nr, suma, data, tip):
     '''
     creeaza o cheltuiala in care se specifica nr apartamentului, suma , data
     si tipul care poate sa fie (intretinere, canal, alte cheltuieli
+    :param id: o valoare intreaga
     :param nr: int, numarul apartamentului
     :param suma: int, suma cheltuielii
     :param data: string, data in care se face cheltuiala
     :param tip: string, tipul cheltuielii
     :return: o cheltuiala cu datele introduse
     '''
-    # return [nr, suma, data, tip]
+    # return [id,nr, suma, data, tip]
     return{
+        "id": id,
         "nr": nr,
         "suma": suma,
         "data": data,
         "tip": tip
     }
+
+def getId(cheltuiala):
+    '''
+    id-ul unei cheltuieli
+    :param cheltuiala:
+    :return: o valoare intreaga
+    '''
+    return cheltuiala["id"]
+
 
 def getNr(cheltuiala):
     '''
@@ -58,7 +69,8 @@ def getTip(cheltuiala):
     return cheltuiala["tip"]
 
 def toString(cheltuiala):
-    return "nr: {}, suma: {}, data: {}, tip: {}".format(
+    return "id: {} ,nr: {}, suma: {}, data: {}, tip: {}".format(
+        getId(cheltuiala),
         getNr(cheltuiala),
         getSuma(cheltuiala),
         getData(cheltuiala),

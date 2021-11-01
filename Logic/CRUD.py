@@ -1,8 +1,9 @@
 from Domain.cheltuiala import creeazaCheltuiala, getNr
 
-def adaugaCheltuiala(nr, suma, data, tip, lista ):
+def adaugaCheltuiala(id ,nr, suma, data, tip, lista ):
     '''
     adauga o cheltuiala intr-o lista
+    :param id: nr intreg
     :param nr: int
     :param suma: int
     :param data:  string
@@ -10,7 +11,7 @@ def adaugaCheltuiala(nr, suma, data, tip, lista ):
     :param lista: lista de cheltuieli
     :return: o lista continand atat elemente vechi cat si noua cheltuiala
     '''
-    cheltuiala = creeazaCheltuiala(nr, suma, data, tip)
+    cheltuiala = creeazaCheltuiala(id, nr, suma, data, tip)
     return lista + [cheltuiala]
 
 def getByNr(nr, lista):
@@ -36,20 +37,21 @@ def stergeCheltuiala(nr, lista):
     return [cheltuiala for cheltuiala in lista if getNr(cheltuiala) != nr]
 
 
-def modificaCheltuiala(nr, suma, data, tip, lista):
+def modificaCheltuiala(id ,nr, suma, data, tip, lista):
     '''
     modifica o prajitura dupa nr
-    :param nr:
-    :param suma:
-    :param data:
-    :param tip:
-    :param lista:
-    :return:
+    :param id: nr intreg
+    :param nr: int
+    :param suma: int
+    :param data: string
+    :param tip: string
+    :param lista: lista pe care urmeaza sa o modificam
+    :return: lista modificata
     '''
     listaNoua = []
     for cheltuiala in lista:
         if getNr(cheltuiala) == nr:
-            cheltuialaNoua = creeazaCheltuiala(nr, suma, data, tip)
+            cheltuialaNoua = creeazaCheltuiala(id ,nr, suma, data, tip)
             listaNoua.append(cheltuialaNoua)
         else:
             listaNoua.append(cheltuiala)

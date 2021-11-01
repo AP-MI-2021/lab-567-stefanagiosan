@@ -1,4 +1,4 @@
-from Domain.cheltuiala import getNr, getSuma, getData, getTip, creeazaCheltuiala
+from Domain.cheltuiala import getNr, getSuma, getData, getTip, creeazaCheltuiala, getId
 
 def adunareCheltuieli(data, valoarea, lista):
     '''
@@ -12,6 +12,7 @@ def adunareCheltuieli(data, valoarea, lista):
     for cheltuiala in lista:
         if data == getData(cheltuiala):
             cheltuialaNoua = creeazaCheltuiala(
+                getId(cheltuiala),
                 getNr(cheltuiala),
                 getSuma(cheltuiala) + valoarea,
                 getData(cheltuiala),

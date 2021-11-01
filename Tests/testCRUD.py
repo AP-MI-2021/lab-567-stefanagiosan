@@ -1,11 +1,12 @@
-from Domain.cheltuiala import getTip, getNr, getData, getSuma
+from Domain.cheltuiala import getTip, getNr, getData, getSuma, getId
 from Logic.CRUD import adaugaCheltuiala, getByNr, stergeCheltuiala, modificaCheltuiala
 
 def testAdaugaCheltuiala():
     lista = []
-    lista = adaugaCheltuiala(1, 100, "12.3.2000", "canal", lista )
+    lista = adaugaCheltuiala(1, 1, 100, "12.3.2000", "canal", lista )
 
     assert len(lista) == 1
+    assert getId(getByNr(1,lista)) == 1
     assert getNr(getByNr(1, lista)) == 1
     assert getSuma(getByNr(1, lista)) == 100
     assert getData(getByNr(1, lista)) == "12.3.2000"
@@ -14,8 +15,8 @@ def testAdaugaCheltuiala():
 
 def testStergeCheltuiala():
     lista = []
-    lista = adaugaCheltuiala(1, 100, "12.3.2000", "canal", lista)
-    lista = adaugaCheltuiala(2, 300, "10.4.2012", "intretinere", lista)
+    lista = adaugaCheltuiala(1, 1, 100, "12.3.2000", "canal", lista)
+    lista = adaugaCheltuiala(1, 2, 300, "10.4.2012", "intretinere", lista)
 
     lista = stergeCheltuiala(1, lista)
 
@@ -30,17 +31,19 @@ def testStergeCheltuiala():
 
 def testModificaCheltuiala():
     lista = []
-    lista = adaugaCheltuiala(1, 100, "12.3.2000", "canal", lista)
-    lista = adaugaCheltuiala(2, 300, "10.4.2012", "intretinere", lista)
+    lista = adaugaCheltuiala(1, 1, 100, "12.3.2000", "canal", lista)
+    lista = adaugaCheltuiala(2, 2, 300, "10.4.2012", "intretinere", lista)
 
-    lista = modificaCheltuiala(1, 230, "13.04.2002", "intretinere", lista)
+    lista = modificaCheltuiala(1, 1, 230, "13.04.2002", "intretinere", lista)
     cheltuialaNoua = getByNr(1, lista)
+    assert getId(cheltuialaNoua) == 1
     assert getNr(cheltuialaNoua) == 1
     assert getSuma(cheltuialaNoua) == 230
     assert getData(cheltuialaNoua) == "13.04.2002"
     assert getTip(cheltuialaNoua) == "intretinere"
 
     cheltuialaNemodificata = getByNr(2, lista)
+    assert getId(cheltuialaNemodificata) == 2
     assert getNr(cheltuialaNemodificata) == 2
     assert getSuma(cheltuialaNemodificata) == 300
     assert getData(cheltuialaNemodificata) == "10.4.2012"

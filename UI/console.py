@@ -11,22 +11,24 @@ def printMenu():
     print("x. Iesire")
 
 def uiAdaugaCheltuiala(lista):
+    id = int(input("dati id-ul cheltuielii: "))
     nr = int(input("dati nr-ul: "))
     suma = int(input("dati suma: "))
     data = input("dati data: ")
     tip = input("dati data: ")
-    return adaugaCheltuiala(nr, suma, data, tip, lista)
+    return adaugaCheltuiala(id, nr, suma, data, tip, lista)
 
 def uiStergeCheltuiala(lista):
     nr = input("dati nr-ul cheltuielii de sters: ")
     return stergeCheltuiala(nr, lista)
 
 def uiModificaCheltuiala(lista):
+    id = int(input("dati id-ul cheltuielii: "))
     nr = int(input("dati nr-ul cheltuielii de modificat: "))
     suma = int(input("dati suma noua: "))
     data = input("dati noua data: ")
     tip = input("dati noul tip: ")
-    return modificaCheltuiala(nr, suma, data, tip, lista)
+    return modificaCheltuiala(id, nr, suma, data, tip, lista)
 
 def showAll(lista):
     for cheltuiala in lista:
