@@ -10,7 +10,7 @@ def creeazaCheltuiala(nr, suma, data, tip):
     :param tip: string, tipul cheltuielii
     :return: o cheltuiala cu datele introduse
     '''
-
+    # return [nr, suma, data, tip]
     return{
         "nr": nr,
         "suma": suma,
@@ -24,7 +24,7 @@ def getNr(cheltuiala):
     :param cheltuiala:
     :return:
     '''
-
+    #return cheltuiala[0]
     return cheltuiala["nr"]
 
 
@@ -34,7 +34,7 @@ def getSuma(cheltuiala):
     :param cheltuiala:
     :return:
     '''
-
+    #return cheltuiala[1]
     return cheltuiala["suma"]
 
 
@@ -44,7 +44,7 @@ def getData(cheltuiala):
     :param cheltuiala:
     :return:
     '''
-
+    # return cheltuiala[2]
     return cheltuiala["data"]
 
 
@@ -54,7 +54,7 @@ def getTip(cheltuiala):
     :param cheltuiala:
     :return:
     '''
-
+    #return cheltuiala[3]
     return cheltuiala["tip"]
 
 def toString(cheltuiala):

@@ -4,7 +4,7 @@ def adunareCheltuieli(data, valoarea, lista):
     '''
     aduna la cheltuieli o valoarea pentru cheltuielile dintr-o data citita
     :param data: string
-    :param valoarea: float
+    :param valoarea: int
     :param lista: lista de prajituri
     :return:
     '''
@@ -21,3 +21,4 @@ def adunareCheltuieli(data, valoarea, lista):
         else:
             listaNoua.append(cheltuiala)
     return listaNoua
+
