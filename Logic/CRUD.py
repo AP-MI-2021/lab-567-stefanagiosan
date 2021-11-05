@@ -30,8 +30,8 @@ def getByNr(nr, lista):
 def stergeCheltuiala(nr, lista):
     '''
 
-    :param nr:
-    :param lista:
+    :param nr: numarul apartamentului de la care vrem sa stergem cheltuiala
+    :param lista: lista din care gasim numarul
     :return:
     '''
     return [cheltuiala for cheltuiala in lista if getNr(cheltuiala) != nr]
@@ -56,3 +56,4 @@ def modificaCheltuiala(id ,nr, suma, data, tip, lista):
         else:
             listaNoua.append(cheltuiala)
     return listaNoua
+
