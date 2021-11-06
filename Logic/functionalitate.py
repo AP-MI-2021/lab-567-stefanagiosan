@@ -8,6 +8,8 @@ def adunareCheltuieli(data, valoarea, lista):
     :param lista: lista de prajituri
     :return:
     '''
+    if valoarea < 0:
+        raise ValueError("Numarul valorii trebuie sa fie pozitiv!")
     listaNoua = []
     for cheltuiala in lista:
         if data == getData(cheltuiala):
@@ -55,20 +57,3 @@ def ordonare(lista):
 
     return sorted(lista, key = getSuma , reverse = True)
 
-def sumeLunare(lista):
-    '''
-
-    :param lista:  lista de cheltuieli
-    :return:
-    '''
-
-    rezultat = {}
-    for cheltuiala in lista:
-        data = getData(cheltuiala)
-        luna = int(data.split('.')[1])
-        if luna not in rezultat:
-            rezultat[luna] = []
-            rezultat[luna].append(getSuma(cheltuiala))
-        else:
-            rezultat[luna].append(getSuma(cheltuiala))
-    return rezultat

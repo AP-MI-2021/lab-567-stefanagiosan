@@ -1,4 +1,5 @@
-from Domain.cheltuiala import creeazaCheltuiala, getNr
+from Domain.cheltuiala import creeazaCheltuiala, getNr, getId
+
 
 def adaugaCheltuiala(id ,nr, suma, data, tip, lista ):
     '''
@@ -11,6 +12,8 @@ def adaugaCheltuiala(id ,nr, suma, data, tip, lista ):
     :param lista: lista de cheltuieli
     :return: o lista continand atat elemente vechi cat si noua cheltuiala
     '''
+    if getById(id, lista) is not None:
+        raise ValueError("id-ul apartamentului exista deja!")
     cheltuiala = creeazaCheltuiala(id, nr, suma, data, tip)
     return lista + [cheltuiala]
 
@@ -26,6 +29,17 @@ def getByNr(nr, lista):
             return cheltuiala
     return None
 
+def getById(id, lista):
+    '''
+
+    :param nr:
+    :param lista:
+    :return:
+    '''
+    for cheltuiala in lista:
+        if getId(cheltuiala) == id:
+            return cheltuiala
+    return None
 
 def stergeCheltuiala(nr, lista):
     '''
@@ -34,6 +48,8 @@ def stergeCheltuiala(nr, lista):
     :param lista: lista din care gasim numarul
     :return:
     '''
+    if getByNr(nr, lista) is None:
+        raise ValueError("Nu exista un apartament cu nr-ul dat!")
     return [cheltuiala for cheltuiala in lista if getNr(cheltuiala) != nr]
 
 
@@ -48,6 +64,8 @@ def modificaCheltuiala(id ,nr, suma, data, tip, lista):
     :param lista: lista pe care urmeaza sa o modificam
     :return: lista modificata
     '''
+    if getById(id, lista) is None:
+        raise ValueError("Nu exista un apartament cu id-ul dat!")
     listaNoua = []
     for cheltuiala in lista:
         if getNr(cheltuiala) == nr:

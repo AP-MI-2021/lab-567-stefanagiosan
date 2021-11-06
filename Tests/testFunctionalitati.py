@@ -37,6 +37,13 @@ def testOrdonare():
     assert getSuma(listaNoua[0]) == 600
     assert getSuma(listaNoua[4]) == 100
     assert listaNoua[0] == lista[3]
+'''
+
+def testSumeLunare():
+    lista = CheltuieliPentruTeste()
+    rezultat = sumeLunare(lista)
+    '''
+
 
 
 

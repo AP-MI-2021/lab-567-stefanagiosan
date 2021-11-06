@@ -36,6 +36,11 @@ def testAdaugaCheltuiala():
     assert getData(getByNr(5, lista)) == "10.4.2020"
     assert getTip(getByNr(2, lista)) == "intretinere"
 
+    # assert getNr(lista[0]) == 1
+    # assert getSuma(lista[0]) == 200
+    # assert getData(lista[0]) == "1.12.2000"
+    # assert getTip(lista[0]) == "canal"
+
 
 def testStergeCheltuiala():
     lista = CheltuieliPentruTeste()

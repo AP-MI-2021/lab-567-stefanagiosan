@@ -26,6 +26,7 @@ def getId(cheltuiala):
     :param cheltuiala:
     :return: o valoare intreaga
     '''
+    #return cheltuiala[0]
     return cheltuiala["id"]
 
 
@@ -35,7 +36,7 @@ def getNr(cheltuiala):
     :param cheltuiala:
     :return:
     '''
-    #return cheltuiala[0]
+    #return cheltuiala[1]
     return cheltuiala["nr"]
 
 
@@ -45,7 +46,7 @@ def getSuma(cheltuiala):
     :param cheltuiala:
     :return:
     '''
-    #return cheltuiala[1]
+    #return cheltuiala[2]
     return cheltuiala["suma"]
 
 
@@ -55,7 +56,7 @@ def getData(cheltuiala):
     :param cheltuiala:
     :return:
     '''
-    # return cheltuiala[2]
+    # return cheltuiala[3]
     return cheltuiala["data"]
 
 
@@ -65,7 +66,7 @@ def getTip(cheltuiala):
     :param cheltuiala:
     :return:
     '''
-    #return cheltuiala[3]
+    #return cheltuiala[4]
     return cheltuiala["tip"]
 
 def toString(cheltuiala):
