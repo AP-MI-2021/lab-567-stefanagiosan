@@ -57,3 +57,26 @@ def ordonare(lista):
 
     return sorted(lista, key = getSuma , reverse = True)
 
+
+
+
+
+def sumeLunare(lista):
+    '''
+
+    :param lista: lista de cheltuieli
+    :return: un dictionar nou numit rezultat , cu cheia "luna" si valoarea o lista de int-uri ,adica sumele lunare
+    '''
+
+    rezultat = {}
+    for cheltuiala in lista:
+        data = getData(cheltuiala)
+        luna = int(data.split('.')[1])
+        if luna not in rezultat:
+            rezultat[luna] = []
+            rezultat[luna].append(getSuma(cheltuiala))
+        else:
+            rezultat[luna].append(getSuma(cheltuiala))
+    return rezultat
+
+

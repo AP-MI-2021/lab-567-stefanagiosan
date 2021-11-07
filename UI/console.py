@@ -1,6 +1,6 @@
 from Logic.CRUD import adaugaCheltuiala, stergeCheltuiala, modificaCheltuiala
 from Domain.cheltuiala import toString, getTip, getSuma
-from Logic.functionalitate import adunareCheltuieli, ordonare, CeaMaiMareCheltuialaPentruTip
+from Logic.functionalitate import adunareCheltuieli, ordonare, CeaMaiMareCheltuialaPentruTip, sumeLunare
 from Tests.testCRUD import CheltuieliPentruTeste
 
 
@@ -17,38 +17,49 @@ def printMenu():
     print("x. Iesire")
 
 
-def uiAdaugaCheltuiala(lista):
+def uiAdaugaCheltuiala(lista, undoList):
     try:
         id = int(input("dati id-ul cheltuielii: "))
         nr = int(input("dati nr-ul: "))
         suma = int(input("dati suma: "))
         data = input("dati data: ")
         tip = input("dati data: ")
-        return adaugaCheltuiala(id, nr, suma, data, tip, lista)
+
+
+        rezultat = adaugaCheltuiala(id, nr, suma, data, tip, lista)
+        undoList.append(lista)
+        return rezultat
+
     except ValueError as ve:
         print("Eroare {}".format(ve))
         return lista
 
 
-
-
-def uiStergeCheltuiala(lista):
+def uiStergeCheltuiala(lista, undoList):
     try:
         nr = input("dati nr-ul cheltuielii de sters: ")
-        return stergeCheltuiala(nr, lista)
+
+
+        rezultat = stergeCheltuiala(nr, lista)
+        undoList.append(lista)
+        return rezultat
     except ValueError as ve:
         print ("Eroare: {}".format(ve))
         return lista
 
 
-def uiModificaCheltuiala(lista):
+def uiModificaCheltuiala(lista, undoList):
     try:
         id = int(input("dati id-ul cheltuielii: "))
         nr = int(input("dati nr-ul cheltuielii de modificat: "))
         suma = int(input("dati suma noua: "))
         data = input("dati noua data: ")
         tip = input("dati noul tip: ")
-        return modificaCheltuiala(id, nr, suma, data, tip, lista)
+
+
+        rezultat = modificaCheltuiala(id, nr, suma, data, tip, lista)
+        undoList.append(lista)
+        return rezultat
     except ValueError as ve:
         print ("Eroare: {}".format(ve))
         return lista
@@ -83,8 +94,8 @@ def uiCeaMaiMareCheltuialaPentruTip(lista):
 
 def uiSumeLunare(lista):
     rezultat = sumeLunare(lista)
-    for tip in rezultat:
-        print(f'Pentru tipul: {tip} avem cheltuiala: {getSuma(rezultat[tip])}')
+    for luna in rezultat:
+        print(f'Pentru luna: {luna} avem lista de sume: {rezultat[luna]}')
 
 
 def runMenu(lista):
@@ -95,19 +106,21 @@ def runMenu(lista):
         optiune = input("dati optiunea: ")
 
         if optiune == "1":
-            lista = uiAdaugaCheltuiala(lista)
+            lista = uiAdaugaCheltuiala(lista, undoList)
         elif optiune == "2":
-            lista = uiStergeCheltuiala(lista)
+            lista = uiStergeCheltuiala(lista, undoList)
         elif optiune == "3":
-            lista = uiModificaCheltuiala(lista)
+            lista = uiModificaCheltuiala(lista, undoList)
         elif optiune == "4":
             lista = uiAdaugaCheltuiala(lista)
         elif optiune == "5":
             uiCeaMaiMareCheltuialaPentruTip(lista)
         elif optiune == "6":
             lista =  uiOrdonare(lista)
+        elif optiune == "7":
+            uiSumeLunare(lista)
         elif optiune == "u":
-            if len(undoList) > 0
+            if len(undoList) > 0:
                 lista = undoList.pop()
             else:
                 print("Nu se poate face undo!")
@@ -116,4 +129,4 @@ def runMenu(lista):
         elif optiune == "x":
             break
         else:
-            print("optiune gresita!reincarcati")
+            print("optiune gresita!reincercati")

@@ -1,5 +1,5 @@
 from Logic.CRUD import adaugaCheltuiala, getByNr
-from Logic.functionalitate import adunareCheltuieli, ordonare, CeaMaiMareCheltuialaPentruTip
+from Logic.functionalitate import adunareCheltuieli, ordonare, CeaMaiMareCheltuialaPentruTip, sumeLunare
 from Domain.cheltuiala import getSuma
 from Tests.testCRUD import CheltuieliPentruTeste
 
@@ -37,12 +37,17 @@ def testOrdonare():
     assert getSuma(listaNoua[0]) == 600
     assert getSuma(listaNoua[4]) == 100
     assert listaNoua[0] == lista[3]
-'''
+
 
 def testSumeLunare():
     lista = CheltuieliPentruTeste()
-    rezultat = sumeLunare(lista)
-    '''
+    rezultatSume = sumeLunare(lista)
+    rezultat = {}
+    rezultat[3] = [100]
+    rezultat[4] = [300, 450, 600, 250]
+    assert len(rezultat) == len(rezultatSume)
+    assert rezultat == rezultatSume
+
 
 
 
