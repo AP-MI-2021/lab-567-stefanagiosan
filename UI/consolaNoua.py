@@ -1,17 +1,15 @@
 from Domain.cheltuiala import toString
-from Logic.CRUD import adaugaCheltuiala, stergeCheltuiala
+from Logic.CRUD import adaugaCheltuiala, stergeCheltuiala, modificaCheltuiala
 
 
 def help():
-    print("Pentru crearea unei cheltuieli trebuie citite id-ul (nr intreg) , numarul apt. (nr intreg) , suma (nr intreg) , data si tipul cheltuielii ")
-    print("Cheltuielile se adauga in lista cu functia 'add' si trebuie sa se introduca valori adecvate ")
-    print("Toate cheltuielile din lista se afiseaza cu functia 'showall' ")
-    print("cheltuielile se pot sterge scriind 'delete' introducandu-se nr-ul cheltuielii, aceasta trebuie sa existe")
+    print("Instructiuni: Pentru crearea unei cheltuieli trebuie citite id-ul (nr intreg) , numarul apt. (nr intreg) , suma (nr intreg) , data si tipul cheltuielii ")
     print("Comenzile trebuie apelate pe o linie ,separate prin ' ; ' iar campurile prin ' , '  ")
     print("Sa nu se foloseasca alti separatori!")
-    print("pentru a iesi din meniu scrieti la comenzi 'iesire'")
-
-
+    print(" add- adauga in lista o cheltuiala noua ,cu valori adecvate ")
+    print(" delete- sterge o cheltuiala,introducandu-se cu virgula dupa si numarul cheltuielii,acesta trebuie sa existe")
+    print(" showall- afiseaza toate cheltuielile din lista ")
+    print(" iesire- daca doriti sa iesiti din meniu")
 
 
 
@@ -25,6 +23,7 @@ def add(id, nr, suma, data, tip, lista):
     return lista
 
 def delete(nr, lista):
+
     try:
         lista = stergeCheltuiala(nr, lista)
     except ValueError as ve:
@@ -33,10 +32,12 @@ def delete(nr, lista):
     return lista
 
 def showall(lista):
+
     for cheltuiala in lista:
         print(toString(cheltuiala))
 
-def mofify(id, nr, suma, data, tip, lista):
+def modify(id, nr, suma, data, tip, lista):
+
     try:
         lista = modificaCheltuiala(id, nr, suma, data, tip, lista)
     except ValueError as ve:
@@ -47,12 +48,14 @@ def mofify(id, nr, suma, data, tip, lista):
 
 def runNewMenu(lista):
     quit = False
+    print("daca aveti nevoie de ajutor scrieti 'help' ")
     while not quit:
-        help()
         optiune = input("dati comenzile: ")
         optiuni = optiune.split(';')
         for comenzi in optiuni:
             sir = comenzi.split(',')
+            if sir[0] == "help":
+                help()
             if sir[0] == "add":
                 id = sir[1]
                 nr = sir[2]
@@ -65,10 +68,16 @@ def runNewMenu(lista):
                 lista = delete(nr, lista)
             if sir[0] == "showall":
                 showall(lista)
+            if sir[0] == "modify":
+                id = sir[1]
+                nr = sir[2]
+                suma = sir[3]
+                data = sir[4]
+                tip = sir[5]
+                lista = modify(id, nr, suma, data, tip, lista)
             if sir[0] == "iesire":
                 quit = True
-            else:
-                print("optiune gresita! reincarcati")
+
 
 
 

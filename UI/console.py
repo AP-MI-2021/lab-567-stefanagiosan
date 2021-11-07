@@ -1,5 +1,5 @@
 from Logic.CRUD import adaugaCheltuiala, stergeCheltuiala, modificaCheltuiala
-from Domain.cheltuiala import toString, getTip, getSuma
+from Domain.cheltuiala import toString, getSuma
 from Logic.functionalitate import adunareCheltuieli, ordonare, CeaMaiMareCheltuialaPentruTip, sumeLunare
 from Tests.testCRUD import CheltuieliPentruTeste
 
@@ -13,6 +13,7 @@ def printMenu():
     print("6. Ordonarea cheltuielilor descrescător după sumă.")
     print("7. Afișarea sumelor lunare pentru fiecare apartament. ")
     print("u. Undo")
+    print("r. Redo")
     print("a. Afisare Cheltuieli")
     print("x. Iesire")
 
@@ -25,9 +26,9 @@ def uiAdaugaCheltuiala(lista, undoList):
         data = input("dati data: ")
         tip = input("dati data: ")
 
-
         rezultat = adaugaCheltuiala(id, nr, suma, data, tip, lista)
         undoList.append(lista)
+        redoList.clear()
         return rezultat
 
     except ValueError as ve:
@@ -42,6 +43,7 @@ def uiStergeCheltuiala(lista, undoList):
 
         rezultat = stergeCheltuiala(nr, lista)
         undoList.append(lista)
+        redoList.clear()
         return rezultat
     except ValueError as ve:
         print ("Eroare: {}".format(ve))
@@ -59,6 +61,7 @@ def uiModificaCheltuiala(lista, undoList):
 
         rezultat = modificaCheltuiala(id, nr, suma, data, tip, lista)
         undoList.append(lista)
+        redoList.clear()
         return rezultat
     except ValueError as ve:
         print ("Eroare: {}".format(ve))
@@ -100,6 +103,8 @@ def uiSumeLunare(lista):
 
 def runMenu(lista):
     undoList = []
+    redoList = []
+    lista = []
     lista = CheltuieliPentruTeste()
     while True:
         printMenu()
@@ -124,6 +129,12 @@ def runMenu(lista):
                 lista = undoList.pop()
             else:
                 print("Nu se poate face undo!")
+        elif optiune == "r":
+            if len(redolist) > 0:
+                redoList.append(lista)
+                lista = undoList.pop()
+            else:
+                print("nu se poate face redo!")
         elif optiune == "a":
             showAll(lista)
         elif optiune == "x":
