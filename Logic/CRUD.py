@@ -14,6 +14,14 @@ def adaugaCheltuiala(id ,nr, suma, data, tip, lista ):
     '''
     if getById(id, lista) is not None:
         raise ValueError("id-ul apartamentului exista deja!")
+    if id < 0:
+        raise ValueError("id-ul este negativ!")
+    if nr < 0:
+        raise ValueError("nr-ul este negativ!")
+    if suma < 0:
+        raise ValueError("suma este negativa!")
+    if tip != "canal" and tip != "intretinere" and tip != "alte cheltuieli":
+        raise ValueError("tipul cheltuielii nu se afla printre cele adaugate")
     cheltuiala = creeazaCheltuiala(id, nr, suma, data, tip)
     return lista + [cheltuiala]
 
@@ -41,6 +49,12 @@ def getById(id, lista):
             return cheltuiala
     return None
 
+def getBySuma(suma, lista):
+    for cheltuiala in lista:
+        if getSuma(cheltuiala) == suma:
+            return cheltuiala
+    return None
+
 def stergeCheltuiala(nr, lista):
     '''
 
@@ -50,6 +64,8 @@ def stergeCheltuiala(nr, lista):
     '''
     if getByNr(nr, lista) is None:
         raise ValueError("Nu exista un apartament cu nr-ul dat!")
+    if nr < 0:
+        raise ValueError("nr-ul este negativ!")
     return [cheltuiala for cheltuiala in lista if getNr(cheltuiala) != nr]
 
 
@@ -66,6 +82,14 @@ def modificaCheltuiala(id ,nr, suma, data, tip, lista):
     '''
     if getById(id, lista) is None:
         raise ValueError("Nu exista un apartament cu id-ul dat!")
+    if id < 0:
+        raise ValueError("id-ul este negativ!")
+    if nr < 0:
+        raise ValueError("nr-ul este negativ!")
+    if suma < 0:
+        raise ValueError("suma este negativa!")
+    if tip != "canal" and tip != "intretinere" and tip != "alte cheltuieli":
+        raise ValueError("tipul cheltuielii nu se afla printre cele adaugate")
     listaNoua = []
     for cheltuiala in lista:
         if getNr(cheltuiala) == nr:

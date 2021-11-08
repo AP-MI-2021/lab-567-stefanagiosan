@@ -12,23 +12,19 @@ def printMenu():
     print("5. Determinarea celei mai mari cheltuieli pentru fiecare tip de cheltuială.")
     print("6. Ordonarea cheltuielilor descrescător după sumă.")
     print("7. Afișarea sumelor lunare pentru fiecare apartament. ")
-    print("u. Undo")
-    print("r. Redo")
     print("a. Afisare Cheltuieli")
     print("x. Iesire")
 
 
-def uiAdaugaCheltuiala(lista, undoList):
+def uiAdaugaCheltuiala(lista):
     try:
         id = int(input("dati id-ul cheltuielii: "))
         nr = int(input("dati nr-ul: "))
         suma = int(input("dati suma: "))
         data = input("dati data: ")
-        tip = input("dati data: ")
+        tip = input("dati tipul: ")
 
         rezultat = adaugaCheltuiala(id, nr, suma, data, tip, lista)
-        undoList.append(lista)
-        redoList.clear()
         return rezultat
 
     except ValueError as ve:
@@ -36,21 +32,18 @@ def uiAdaugaCheltuiala(lista, undoList):
         return lista
 
 
-def uiStergeCheltuiala(lista, undoList):
+def uiStergeCheltuiala(lista):
     try:
         nr = input("dati nr-ul cheltuielii de sters: ")
 
-
         rezultat = stergeCheltuiala(nr, lista)
-        undoList.append(lista)
-        redoList.clear()
         return rezultat
     except ValueError as ve:
         print ("Eroare: {}".format(ve))
         return lista
 
 
-def uiModificaCheltuiala(lista, undoList):
+def uiModificaCheltuiala(lista):
     try:
         id = int(input("dati id-ul cheltuielii: "))
         nr = int(input("dati nr-ul cheltuielii de modificat: "))
@@ -60,8 +53,6 @@ def uiModificaCheltuiala(lista, undoList):
 
 
         rezultat = modificaCheltuiala(id, nr, suma, data, tip, lista)
-        undoList.append(lista)
-        redoList.clear()
         return rezultat
     except ValueError as ve:
         print ("Eroare: {}".format(ve))
@@ -102,39 +93,31 @@ def uiSumeLunare(lista):
 
 
 def runMenu(lista):
-    undoList = []
-    redoList = []
+
     lista = []
-    lista = CheltuieliPentruTeste()
+    lista = adaugaCheltuiala(1, 1, 100, "12.3.2000", "canal", lista)
+    lista = adaugaCheltuiala(2, 2, 300, "10.4.2012", "intretinere", lista)
+    lista = adaugaCheltuiala(3, 3, 450, "10.4.2018", "canal", lista)
+    lista = adaugaCheltuiala(4, 4, 600, "10.4.2016", "intretinere", lista)
+    lista = adaugaCheltuiala(5, 5, 250, "10.4.2020", "alte cheltuieli", lista)
     while True:
         printMenu()
         optiune = input("dati optiunea: ")
 
         if optiune == "1":
-            lista = uiAdaugaCheltuiala(lista, undoList)
-        elif optiune == "2":
-            lista = uiStergeCheltuiala(lista, undoList)
-        elif optiune == "3":
-            lista = uiModificaCheltuiala(lista, undoList)
-        elif optiune == "4":
             lista = uiAdaugaCheltuiala(lista)
+        elif optiune == "2":
+            lista = uiStergeCheltuiala(lista)
+        elif optiune == "3":
+            lista = uiModificaCheltuiala(lista)
+        elif optiune == "4":
+            lista = uiAdunareCheltuiala(lista)
         elif optiune == "5":
             uiCeaMaiMareCheltuialaPentruTip(lista)
         elif optiune == "6":
             lista =  uiOrdonare(lista)
         elif optiune == "7":
             uiSumeLunare(lista)
-        elif optiune == "u":
-            if len(undoList) > 0:
-                lista = undoList.pop()
-            else:
-                print("Nu se poate face undo!")
-        elif optiune == "r":
-            if len(redolist) > 0:
-                redoList.append(lista)
-                lista = undoList.pop()
-            else:
-                print("nu se poate face redo!")
         elif optiune == "a":
             showAll(lista)
         elif optiune == "x":
