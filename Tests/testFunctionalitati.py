@@ -6,8 +6,10 @@ from Tests.testCRUD import CheltuieliPentruTeste
 
 def testAdaugaLaSuma():
     lista = []
-    lista = adaugaCheltuiala(1, 1, 100, "12.3.2000", "canal", lista)
-    lista = adaugaCheltuiala(2, 2, 300, "10.4.2012", "intretinere", lista)
+    undoList = []
+    redoList = []
+    lista = adaugaCheltuiala(1, 1, 100, "12.3.2000", "canal", lista, undoList, redoList)
+    lista = adaugaCheltuiala(2, 2, 300, "10.4.2012", "intretinere", lista, undoList, redoList)
 
     lista = adunareCheltuieli("12.3.2000", 100, lista)
 

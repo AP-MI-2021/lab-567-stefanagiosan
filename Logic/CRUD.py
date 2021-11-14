@@ -1,7 +1,7 @@
 from Domain.cheltuiala import creeazaCheltuiala, getNr, getId
 
 
-def adaugaCheltuiala(id ,nr, suma, data, tip, lista ):
+def adaugaCheltuiala(id ,nr, suma, data, tip, lista , undoList, redoList):
     '''
     adauga o cheltuiala intr-o lista
     :param id: nr intreg
@@ -23,6 +23,8 @@ def adaugaCheltuiala(id ,nr, suma, data, tip, lista ):
     if tip != "canal" and tip != "intretinere" and tip != "alte cheltuieli":
         raise ValueError("tipul cheltuielii nu se afla printre cele adaugate")
     cheltuiala = creeazaCheltuiala(id, nr, suma, data, tip)
+    undoList.append(lista)
+    redoList.clear()
     return lista + [cheltuiala]
 
 def getByNr(nr, lista):
@@ -49,13 +51,8 @@ def getById(id, lista):
             return cheltuiala
     return None
 
-def getBySuma(suma, lista):
-    for cheltuiala in lista:
-        if getSuma(cheltuiala) == suma:
-            return cheltuiala
-    return None
 
-def stergeCheltuiala(nr, lista):
+def stergeCheltuiala(nr, lista, undoList, redoList):
     '''
 
     :param nr: numarul apartamentului de la care vrem sa stergem cheltuiala
@@ -66,10 +63,12 @@ def stergeCheltuiala(nr, lista):
         raise ValueError("Nu exista un apartament cu nr-ul dat!")
     if nr < 0:
         raise ValueError("nr-ul este negativ!")
+    undoList.append(lista)
+    redoList.clear()
     return [cheltuiala for cheltuiala in lista if getNr(cheltuiala) != nr]
 
 
-def modificaCheltuiala(id ,nr, suma, data, tip, lista):
+def modificaCheltuiala(id ,nr, suma, data, tip, lista, undoList, redoList):
     '''
     modifica o prajitura dupa nr
     :param id: nr intreg
@@ -97,5 +96,7 @@ def modificaCheltuiala(id ,nr, suma, data, tip, lista):
             listaNoua.append(cheltuialaNoua)
         else:
             listaNoua.append(cheltuiala)
+    undoList.append(lista)
+    redoList.clear()
     return listaNoua
 
