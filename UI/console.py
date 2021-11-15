@@ -27,8 +27,7 @@ def uiAdaugaCheltuiala(lista, undoList, redoList):
         tip = input("dati tipul: ")
 
         rezultat = adaugaCheltuiala(id, nr, suma, data, tip, lista, undoList, redoList)
-        undoList.append(lista)
-        redoList.clear()
+
         return rezultat
 
     except ValueError as ve:
@@ -41,8 +40,7 @@ def uiStergeCheltuiala(lista, undoList, redoList):
         nr = int(input("dati nr-ul cheltuielii de sters: "))
 
         rezultat = stergeCheltuiala(nr, lista, undoList, redoList)
-        undoList.append(lista)
-        redoList.clear()
+
         return rezultat
     except ValueError as ve:
         print ("Eroare: {}".format(ve))
@@ -59,8 +57,7 @@ def uiModificaCheltuiala(lista, undoList, redoList):
 
 
         rezultat = modificaCheltuiala(id, nr, suma, data, tip, lista, undoList, redoList)
-        undoList.append(lista)
-        redoList.clear()
+
         return rezultat
     except ValueError as ve:
         print ("Eroare: {}".format(ve))
@@ -127,11 +124,12 @@ def runMenu(lista):
     undoList = []
     redoList = []
     lista = []
-    lista = adaugaCheltuiala(1, 1, 100, "12.3.2000", "canal", lista, undoList, redoList)
+    '''lista = adaugaCheltuiala(1, 1, 100, "12.3.2000", "canal", lista, undoList, redoList)
     lista = adaugaCheltuiala(2, 2, 300, "10.4.2012", "intretinere", lista, undoList, redoList)
     lista = adaugaCheltuiala(3, 3, 450, "10.4.2018", "canal", lista, undoList, redoList)
     lista = adaugaCheltuiala(4, 4, 600, "10.4.2016", "intretinere", lista, undoList, redoList)
-    lista = adaugaCheltuiala(5, 5, 250, "10.4.2020", "alte cheltuieli", lista, undoList, redoList)
+    lista = adaugaCheltuiala(5, 5, 250, "10.4.2020", "alte cheltuieli", lista, undoList, redoList)'''
+
     while True:
         printMenu()
         optiune = input("dati optiunea: ")

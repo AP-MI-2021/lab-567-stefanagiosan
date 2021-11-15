@@ -13,19 +13,19 @@ def help():
 
 
 
-def add(id, nr, suma, data, tip, lista):
+def add(id, nr, suma, data, tip, lista, undoList, redoList):
 
     try:
-        lista = adaugaCheltuiala(id, nr, suma, data, tip, lista)
+        lista = adaugaCheltuiala(id, nr, suma, data, tip, lista, undoList, redoList)
     except ValueError as ve:
         print("Eroare: ", ve)
     print("cheltuiala a fost adaugata")
     return lista
 
-def delete(nr, lista):
+def delete(nr, lista, undoList, redoList):
 
     try:
-        lista = stergeCheltuiala(nr, lista)
+        lista = stergeCheltuiala(nr, lista , undoList, redoList)
     except ValueError as ve:
         print("Eroare: ", ve)
     print("stergerea a fost facuta")
@@ -36,10 +36,10 @@ def showall(lista):
     for cheltuiala in lista:
         print(toString(cheltuiala))
 
-def modify(id, nr, suma, data, tip, lista):
+def modify(id, nr, suma, data, tip, lista, undoList, redoList):
 
     try:
-        lista = modificaCheltuiala(id, nr, suma, data, tip, lista)
+        lista = modificaCheltuiala(id, nr, suma, data, tip, lista , undoList, redoList)
     except ValueError as ve:
         print("Eroare: ", ve)
     print("modificarea a fost facuta")
@@ -47,6 +47,8 @@ def modify(id, nr, suma, data, tip, lista):
 
 
 def runNewMenu(lista):
+    undoList = []
+    redoList = []
     quit = False
     print("daca aveti nevoie de ajutor scrieti 'help' ")
     while not quit:
@@ -57,24 +59,24 @@ def runNewMenu(lista):
             if sir[0] == "help":
                 help()
             if sir[0] == "add":
-                id = sir[1]
-                nr = sir[2]
-                suma = sir[3]
+                id = int(sir[1])
+                nr = int(sir[2])
+                suma = int(sir[3])
                 data = sir[4]
                 tip = sir[5]
-                lista = add(id, nr, suma, data, tip, lista)
+                lista = add(id, nr, suma, data, tip, lista, undoList, redoList)
             if sir[0] == "delete":
-                nr = sir[1]
-                lista = delete(nr, lista)
+                nr = int(sir[1])
+                lista = delete(nr, lista, undoList, redoList)
             if sir[0] == "showall":
                 showall(lista)
             if sir[0] == "modify":
-                id = sir[1]
-                nr = sir[2]
-                suma = sir[3]
+                id = int(sir[1])
+                nr = int(sir[2])
+                suma = int(sir[3])
                 data = sir[4]
                 tip = sir[5]
-                lista = modify(id, nr, suma, data, tip, lista)
+                lista = modify(id, nr, suma, data, tip, lista, undoList, redoList)
             if sir[0] == "iesire":
                 quit = True
 
